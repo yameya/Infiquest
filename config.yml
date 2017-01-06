@@ -1,0 +1,50 @@
+logging:
+  level: INFO
+  loggers:
+    com.myapps.infiquest: DEBUG
+
+database:
+  # the name of your JDBC driver
+  driverClass: org.postgresql.Driver
+
+  # the username
+  user: postgres
+
+  # the password
+  password: Chilloff_30
+
+  # the JDBC URL
+  url: jdbc:postgresql:Infiquest
+
+  # any properties specific to your JDBC driver:
+  properties:
+    charSet: UTF-8
+    hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  # the maximum amount of time to wait on an empty pool before throwing an exception
+  maxWaitForConnection: 1s
+
+  # the minimum number of connections to keep open
+  minSize: 8
+
+  # the maximum number of connections to keep open
+  maxSize: 32
+
+  # whether or not idle connections should be validated
+  checkConnectionWhileIdle: false
+
+
+# Extending from the default server configuration
+server:
+  applicationConnectors:
+    - type: http
+      port: 9117
+
+  adminConnectors:
+      - type: http
+        port: 9180
+
+elasticSearchHost: 127.0.0.1
+elasticSearchClusterName: infiquestcluster
+elasticSearchNodeName: infiquestnode
+elasticSearchPort: 9300

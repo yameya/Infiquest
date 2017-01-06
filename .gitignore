@@ -1,0 +1,8 @@
+#Ignore all files in target folder
+target/
+
+#Igmore this idea related file
+*.iml
+
+#Ignore .idea directory
+.idea/
