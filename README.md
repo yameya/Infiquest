@@ -20,18 +20,23 @@ Configuring Postgresql
    
 
 
-Configuring elastic search
+Configuring elasticSearch
 **************************
-1. Modify elasticsearch.yml present under config folder of your elasticsearch installtion as per below suggestions
 
-cluster.name: infiquestcluster elasticsearc
+Modify elasticsearch.yml present under config folder of your elasticsearch installtion as per below suggestions
+
+cluster.name: infiquestcluster 
+
 node.name: infiquestnode
 
 If this server needs to be accessed by external entities(the ones not installed on localhost, like for example- logstash may be installed on some remote server and will need to be able to connect to elasticSearch), then in that case modify below entries as:
-network.host: localhost
-http.host : <IP of server where elasticsearch is installed.>
 
-2. Start elasticSearch server post these changes
+network.host: localhost
+
+http.host : IP of server where elasticsearch is installed 
+
+
+Start elasticSearch server post these changes
 
 
 
@@ -39,14 +44,20 @@ Configuring Logstash
 *********************
 
 1. Modify the esconfig.conf available under the root path as per the below suggestions:
+
    a. Modify jdbc_connection_string => "jdbc:postgresql://10.220.15.170:5432/Infiquest" to point to your DB path.
+   
       If the db is installed on the localhost, the above IP can be replaced by localhost
+
    b. Modify jdbc_password with the password for the postgres user of PostgreSql .
+   
    c. Place the postgresql-9.1-901-1.jdbc4.jar in a appropriate location on your server where logstash is installed and modify jdbc_driver_library to point to that location.
+   
    d. Modify hosts so that it points to the server where elastic search is running.
    
  2. Based on your OS, add a cronjob so that the following command is run every few seconds:
-    bin/logstash -f esconfig.conf
+   
+   bin/logstash -f esconfig.conf
     
 
 
