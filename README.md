@@ -10,6 +10,7 @@ Pre-requistes for setting up the server:
 
 Install all the above prereqistes and follow the steps below to configure each of them.
 
+
 Configuring Postgresql
 ***********************
 
@@ -17,6 +18,8 @@ Configuring Postgresql
 2. Run the script - createInfiquestDb :
    psql -f psql -f createDB.sql
    
+
+
 Configuring elastic search
 **************************
 1. Modify elasticsearch.yml present under config folder of your elasticsearch installtion as per below suggestions
@@ -29,6 +32,8 @@ network.host: localhost
 http.host : <IP of server where elasticsearch is installed.>
 
 2. Start elasticSearch server post these changes
+
+
 
 Configuring Logstash
 *********************
@@ -43,7 +48,9 @@ Configuring Logstash
  2. Based on your OS, add a cronjob so that the following command is run every few seconds:
     bin/logstash -f esconfig.conf
     
- Configuring config.yml
+
+
+Configuring config.yml
  *********************
  Modify the config.yml as per below suggestions:
  
