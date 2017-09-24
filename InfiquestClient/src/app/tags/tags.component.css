@@ -1,0 +1,27 @@
+.tagsContainer
+{
+    width:70%;
+    margin: auto;
+   
+}
+
+.tagsTitle
+{
+     padding:10px;
+   margin-left:15%;
+   color:black;
+}
+
+.thumbnail
+{
+    padding: 30px 3px 30px 3px;
+    margin-right:5px;
+    background-color: lavender;
+    text-align: center;
+    font-weight: bold;
+    font-family: serif; 
+    box-shadow: beige;
+    -webkit-text-fill-color:navy;
+   
+    
+}

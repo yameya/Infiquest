@@ -1,0 +1,12 @@
+{
+    "protocol":"http",
+    "host": "localhost",
+    "port": 9117,
+    "getAllQuestionsUrl":"questions",
+    "getAllTagsUrl":"tags",
+    "getQuestionsById" : "questions/getByQuestionId/",
+    "getAnswersByQuestionIdUrl" : "answers/getByQuestionId/",
+    "createAnswerForQuestionIdUrl" : "answers/upsertanswer",
+    "createOrUpdateQuestionUrl" : "questions/upsertquestion",
+    "loginUser" : "users/login"
+}

@@ -1,0 +1,39 @@
+.questionContainer
+{
+    width:70%;
+    margin:auto;
+       
+}
+
+.questionTitle
+{
+   padding:10px;
+   margin-left:15%;
+   color:black;
+   border-bottom: 1px solid #eee;
+   width:70%;
+}
+
+.questionListItem
+{
+    padding:20px;
+    background-color: Lavender ;
+    margin:10px;
+}
+
+.votesColor
+{
+    color:darkgreen;
+}
+
+.likesColor{
+    color:saddlebrown;
+}
+
+.tag{
+    background-color: BurlyWood ;
+    padding:5px;
+    margin-right:15px;
+    max-width: 100%;
+  
+}

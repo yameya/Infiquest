@@ -1,0 +1,100 @@
+<div class="container" *ngIf="question">
+  <div class="page-header">
+    <h3> <strong> {{question.question_title}} </strong></h3>
+  </div>  
+
+    
+  <div class="row">
+        <div class="col-md-1">
+          <div cass="row">
+              <div class="upVotes">
+                  <i class="fa fa-thumbs-up fa-lg" aria-hidden="true" (click)="upVoteQuestion()"></i>
+              </div> 
+          </div>   
+            
+          <div class="row">
+                <div class="votesColor">
+                  {{question.question_upvotes - question.question_downvotes}}
+                </div>   
+          </div>  
+            
+          <div class="row">
+                <div class="downVotes">
+                  <i class="fa fa-thumbs-down fa-lg" aria-hidden="true" (click)="downVoteQuestion()"></i>
+                </div>   
+          </div> 
+        
+        </div>
+
+        <div class="col-md-11" >
+          <div class="row">
+             <div class="row questionDescription">
+                {{question.question_description}}
+             </div>  
+          </div>  
+         
+          <div class="row">
+            <span class="tag" *ngFor="let tag of question.tags"> {{tag.tagName}}</span>  
+          </div>  
+      
+        </div>  
+
+  </div>  
+  
+  <div>
+      <div class="answerTitle" *ngIf="answers">
+        <h4> <strong> {{answers.length}} Answers</strong></h4>
+      </div>    
+  </div>
+
+  <div class="answers"  *ngIf="answers">
+    <div class="row answer" *ngFor="let answer of answers">
+     <div class="col-md-1">
+          <div cass="row">
+              <div class="answerUpVotes">
+                  <i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i>
+              </div> 
+          </div>   
+            
+          <div class="row">
+                <div class="votesColor">
+                  {{answer.answerUpvotes}}
+                </div>   
+          </div>  
+            
+          <div class="row">
+                <div class="answerDownVotes">
+                  <i class="fa fa-thumbs-down fa-lg" aria-hidden="true"></i>
+                </div>   
+          </div> 
+        
+    </div>
+
+    <div class="col-md-11" >
+          <div class="row">
+             <div class="row">
+               {{answer.answerContent}}
+             </div>  
+          </div>  
+ 
+    </div>      
+  
+  </div>
+
+  <div class="answerTitle">
+      <h4> <strong> Your Answer </strong></h4>
+  </div>
+
+  <form #answerForm="ngForm">
+   <div class="form-group">
+      <textarea name="answerText" cols="100%" rows="5" required   [(ngModel)]="newAnswer.answerContent"></textarea>
+   </div>
+
+   <div class="form-group">
+      <input type="submit" name="Submit" (click)="submitAnswer()" class="btn btn-success"/>   
+   </div>   
+  
+  </form> 
+
+</div>   
+  

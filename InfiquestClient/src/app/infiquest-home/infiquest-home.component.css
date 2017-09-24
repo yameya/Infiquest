@@ -1,0 +1,34 @@
+.navbar-app {
+      background-color: midnightblue ;
+      padding-top: 15px;
+      padding-bottom:15px;
+      margin-bottom: 20px;
+}
+
+.menuBar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menuItem {
+    padding-left:20px;
+    padding-right:20px;
+    display: inline;
+}
+
+a{
+    color:white;
+    text-decoration: none;
+}
+
+a:hover{
+    padding:10px;
+    background-color: lightsteelblue;
+}
+
+.active{
+    padding:10px;
+    background-color: cornflowerblue;
+}
+

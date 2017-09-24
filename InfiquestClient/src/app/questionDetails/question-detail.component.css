@@ -1,0 +1,68 @@
+.votesColor{
+    color:saddlebrown;
+    font-size: x-large;
+    padding-top:2px;
+    padding-bottom:2px;
+    padding-left: 15px;
+}
+
+.upVotes{
+    font-size:large;
+    color:darkgreen;
+}
+
+.downVotes{
+    font-size: large;
+    color:darkred;
+    padding-left: 15px;
+}
+
+.tag{
+    background-color: BurlyWood ;
+    padding:5px;
+    margin-right:15px;
+    max-width: 100%;
+  
+}
+
+.questionDescription{
+    padding-top: 15px;
+    padding-bottom:15px;
+}
+
+.answerTitle
+{
+    margin: 40px 0 20px;
+    padding-top:10px;
+    padding-bottom:10px;
+    border-bottom: 2px solid lightblue;
+}
+
+.answerUpVotes{
+    font-size:large;
+    color:darkgreen;
+}
+
+.answerDownVotes{
+    font-size: large;
+    color:darkred;
+    padding-left: 15px;
+}
+
+.answers
+{
+    padding-left:5%;
+}
+
+.answer
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid lightblue;
+}
+
+.submitButton{
+   padding:5px;
+   background-color: cornflowerblue;
+   color:white;
+}
