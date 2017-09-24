@@ -1,10 +1,9 @@
 package com.myapps.infiquest.resources;
 
+import com.myapps.infiquest.core.UserService;
 import com.myapps.infiquest.core.Users;
 import com.myapps.infiquest.dao.UsersDAO;
-import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
-
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -50,7 +49,6 @@ public class UsersResource
     @PermitAll
     public Optional<Users> createUser(Users user)
     {
-
         return usersDAO.upsert(user);
     }
 
@@ -62,5 +60,30 @@ public class UsersResource
     {
         return usersDAO.delete(name.get(),password.get());
     }
+
+    @POST
+    @Path("login")
+    @UnitOfWork(transactional = false)
+
+    public Optional<Users> login(Users user)
+    {
+
+        String jtoken = "";
+        Optional<Users> loggedInUser = usersDAO.findByNameAndPwd(user.getUserName(),user.getUserPassword());
+        if(loggedInUser.isPresent())
+        {
+            Long userId = loggedInUser.get().getUserId();
+            jtoken = UserService.getInstance().generateJtokenForUser(userId);
+            loggedInUser.get().setUserPassword(jtoken);
+        }
+        else
+        {
+            loggedInUser = Optional.empty();
+        }
+
+        return loggedInUser;
+    }
+
+
 
 }

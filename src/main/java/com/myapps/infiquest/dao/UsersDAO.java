@@ -3,6 +3,7 @@ package com.myapps.infiquest.dao;
 import com.myapps.infiquest.core.Users;
 import io.dropwizard.hibernate.AbstractDAO;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import java.util.List;
 import java.util.Optional;
@@ -42,11 +43,33 @@ public class UsersDAO extends AbstractDAO<Users>
 
     public Optional<Users> findByNameAndPwd(String name, String password)
     {
+        Optional<Users> optional;
+        currentSession().beginTransaction();
+        Transaction transaction = currentSession().beginTransaction();
+        try {
+            // do some transactions
+            transaction.commit();
+            optional= Optional.ofNullable(
+                    uniqueResult(namedQuery("com.myapps.infiquest.core.Users.findByNameAndPwd")
+                            .setParameter("name",name)
+                            .setParameter("password",password) ));
+        } catch (Exception e) {
+            transaction.rollback();
+            throw new RuntimeException(e);
+        }
+
+        return optional;
+
+
+    }
+
+    public Optional<Users> findByUserId(Long userId)
+    {
 
         return Optional.ofNullable(
-                uniqueResult(namedQuery("com.myapps.infiquest.core.Users.findByNameAndPwd")
-                        .setParameter("name",name)
-                        .setParameter("password",password)
+                uniqueResult(namedQuery("com.myapps.infiquest.core.Users.findByUserId")
+                        .setParameter("userId",userId)
+
 
                 ));
 

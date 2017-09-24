@@ -1,16 +1,11 @@
 package com.myapps.infiquest.dao;
 
-import com.myapps.infiquest.core.Answer;
 import com.myapps.infiquest.core.Question;
-import com.myapps.infiquest.core.QuestionTag;
-import com.myapps.infiquest.core.QuestionUsergroup;
 import io.dropwizard.hibernate.AbstractDAO;
 import org.hibernate.SessionFactory;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * Created by AYellapurkar on 28-11-2016.
@@ -91,7 +86,9 @@ public class QuestionDAO extends AbstractDAO<Question>
             questionUsergroupDAO.upsert(qu);
 
         }
-        */
+*/
+
+
         return Optional.ofNullable(persist(question));
     }
 

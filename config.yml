@@ -2,6 +2,7 @@ logging:
   level: INFO
   loggers:
     com.myapps.infiquest: DEBUG
+    org.eclipse.jetty.servlets: DEBUG
 
 database:
   # the name of your JDBC driver

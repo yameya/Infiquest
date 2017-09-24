@@ -30,14 +30,13 @@ public class AnswerDAO extends AbstractDAO<Answer>
         return list(namedQuery("com.myapps.infiquest.core.Answer.findAll"));
     }
 
-    public Optional<Answer> findByQuestionId(Long questionId)
+    public List<Answer> findByQuestionId(Long questionId)
     {
 
-        return Optional.ofNullable(
-                uniqueResult(namedQuery("com.myapps.infiquest.core.Answer.findByQuestionId")
+        return  list(namedQuery("com.myapps.infiquest.core.Answer.findByQuestionId")
                         .setParameter("questionId",questionId)
 
-                ));
+                );
 
     }
 

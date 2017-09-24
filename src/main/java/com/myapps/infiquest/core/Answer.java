@@ -37,10 +37,10 @@ public class Answer implements Principal
     private String answerContent;
 
     @Column(name="QUESTION_ID")
-    private String questionId;
+    private Long questionId;
 
     @Column(name="USER_ID")
-    private String userId;
+    private Long userId;
 
     @Column(name = "ANSWER_TIMESTAMP")
     private Long answerCreationTime;
@@ -51,7 +51,7 @@ public class Answer implements Principal
     @Column(name = "ANSWER_DOWNVOTES")
     private Long answerDownvotes;
 
-    public Answer(Long answerId, String answerContent, String questionId, String userId, Long answerCreationTime, Long answerUpvotes, Long answerDownvotes) {
+    public Answer(Long answerId, String answerContent, Long questionId, Long userId, Long answerCreationTime, Long answerUpvotes, Long answerDownvotes) {
         this.answerId = answerId;
         this.answerContent = answerContent;
         this.questionId = questionId;
@@ -77,19 +77,19 @@ public class Answer implements Principal
         this.answerContent = answerContent;
     }
 
-    public String getQuestionId() {
+    public Long getQuestionId() {
         return questionId;
     }
 
-    public void setQuestionId(String questionId) {
+    public void setQuestionId(Long questionId) {
         this.questionId = questionId;
     }
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

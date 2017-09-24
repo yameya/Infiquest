@@ -40,7 +40,7 @@ public class AnswerResource
     @Path("getByQuestionId/{questionId}")
     @UnitOfWork
     @PermitAll
-    public Optional<Answer> findByQuestionId(@PathParam("questionId") Optional<Long> questionId)
+    public List<Answer> findByQuestionId(@PathParam("questionId") Optional<Long> questionId)
     {
         return answerDAO.findByQuestionId(questionId.get());
     }
@@ -49,7 +49,7 @@ public class AnswerResource
     @Path("getByUserId/{userId}")
     @UnitOfWork
     @PermitAll
-    public Optional<Answer> findByUserId(@PathParam("userId") Optional<Long> userId)
+    public List<Answer> findByUserId(@PathParam("userId") Optional<Long> userId)
     {
         return answerDAO.findByQuestionId(userId.get());
     }

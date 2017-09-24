@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.db.DataSourceFactory;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import java.io.UnsupportedEncodingException;
+
 public class InfiquestConfiguration extends Configuration {
 
     /**
@@ -45,6 +47,27 @@ public class InfiquestConfiguration extends Configuration {
     @NotEmpty
     @JsonProperty
     private String elasticSearchNodeName = "infiquestnode";
+
+    @NotEmpty
+    private String authMode = "Bearer";
+
+    @NotEmpty
+    private String authRealm = "registered_users@infiquest.com";
+
+    @NotEmpty
+    private String jwtTokenSecret = "dfwzsdzwh823zebdwdz772632gdsbd";
+
+    public byte[] getJwtTokenSecret() throws UnsupportedEncodingException {
+        return jwtTokenSecret.getBytes("UTF-8");
+    }
+
+    public String getAuthMode() {
+        return authMode;
+    }
+
+    public String getAuthRealm() {
+        return authRealm;
+    }
 
     public String getElasticSearchHost() {
         return elasticSearchHost;

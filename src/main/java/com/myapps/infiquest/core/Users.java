@@ -1,5 +1,6 @@
 package com.myapps.infiquest.core;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
@@ -19,7 +20,9 @@ import java.security.Principal;
         @NamedQuery(name = "com.myapps.infiquest.core.Users.findByName",
                 query = "select u from Users u where u.userName = :name"),
         @NamedQuery(name = "com.myapps.infiquest.core.Users.findByNameAndPwd",
-                query = "select u from Users u where u.userName = :name and u.userPassword = :password")
+                query = "select u from Users u where u.userName = :name and u.userPassword = :password"),
+        @NamedQuery(name = "com.myapps.infiquest.core.Users.findByUserId",
+                query = "select u from Users u where u.userId = :userId")
 
 
 

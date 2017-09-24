@@ -12,6 +12,7 @@ import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import javax.ws.rs.WebApplicationException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -94,7 +95,6 @@ public class ESClient
         SearchHits hits = searchResponse.getHits();
 
         ObjectMapper mapper = new ObjectMapper();
-        //mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         List<Question> questionList = new ArrayList<Question>();
 
         for (SearchHit hit : hits)
@@ -107,12 +107,13 @@ public class ESClient
             }
             catch(Exception ex)
             {
-                ex.printStackTrace();
+                throw new WebApplicationException(ex);
             }
 
         }
         return questionList;
     }
+
 
 
 
