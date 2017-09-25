@@ -6,3 +6,9 @@ target/
 
 #Ignore .idea directory
 .idea/
+
+InfiquestClient/.vscode
+
+InfiquestClient/e2e
+
+InfiquestClient/node_modules
