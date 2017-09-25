@@ -8,6 +8,7 @@ import io.dropwizard.hibernate.UnitOfWork;
 import org.jose4j.jwt.MalformedClaimException;
 import org.jose4j.jwt.consumer.JwtContext;
 
+import javax.ws.rs.WebApplicationException;
 import java.util.Optional;
 
 /**
@@ -30,8 +31,8 @@ public class InfiquestAuthenticator implements Authenticator<JwtContext, Users>
         try {
             final String subject = context.getJwtClaims().getSubject();
             return usersDAO.findByUserId(Long.parseLong(subject));
-        } catch (MalformedClaimException e) {
-            return Optional.empty();
+        } catch (MalformedClaimException ex) {
+            throw new WebApplicationException(ex);
         }
 
     }
@@ -43,30 +44,3 @@ public class InfiquestAuthenticator implements Authenticator<JwtContext, Users>
 
 
 }
-
-/*
-public class InfiquestAuthenticator implements Authenticator<BasicCredentials, Users>
-{
-    private UsersDAO usersDAO = null;
-
-
-    public InfiquestAuthenticator()
-    {
-
-    }
-
-   public void setUsersDAO(UsersDAO usersDAO)
-   {
-       this.usersDAO = usersDAO;
-   }
-
-
-    @Override
-    @UnitOfWork
-    public java.util.Optional<Users> authenticate(BasicCredentials credentials) throws AuthenticationException
-    {
-        return usersDAO.findByNameAndPwd(credentials.getUsername(),credentials.getPassword());
-    }
-}
-
-*/

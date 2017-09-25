@@ -12,6 +12,8 @@ import { Router }            from '@angular/router';
 export class LoginComponent implements OnInit {
 
   user : User;
+  error: boolean;
+  errorMessage : string;
 
   constructor(private router : Router, private route: ActivatedRoute,private InfiquestService: InfiquestService) {
     this.user = new User();
@@ -19,25 +21,34 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
+    this.error = false;
   }
 
-  setUserAttributes() : void{
-  
-    this.user.setUserName("admin");
-    this.user.setUserPassword("infinera1")
+  setUserAttributes(user : User) : void{
+
+    this.user.setUserName(user.userName);
+    this.user.setUserPassword(user.userPassword);
     this.user.setUserDisplayPic("");
     this.user.setUserEmailId("");
     this.user.setUserId(0);
   }
 
-  login() : void{
-    this.setUserAttributes();
+  login(user : User) : void{
+    this.setUserAttributes(user);
     this.InfiquestService.loginForUser(this.user)
         .then(user => {
           this.user = user;
           this.InfiquestService.setUser(user);
           this.router.navigate(['/home']);
         }
-        );   
+        )
+        .catch( errorObject => {
+          
+          console.log("errorObject" + errorObject);
+          this.error = true;
+          this.errorMessage = errorObject.json().message;
+          console.log(errorObject.json().message);
+        });
+      
   }
 }

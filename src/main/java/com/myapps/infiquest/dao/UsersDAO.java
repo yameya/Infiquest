@@ -5,6 +5,7 @@ import io.dropwizard.hibernate.AbstractDAO;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import javax.ws.rs.WebApplicationException;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,9 +54,9 @@ public class UsersDAO extends AbstractDAO<Users>
                     uniqueResult(namedQuery("com.myapps.infiquest.core.Users.findByNameAndPwd")
                             .setParameter("name",name)
                             .setParameter("password",password) ));
-        } catch (Exception e) {
+        } catch (Exception ex) {
             transaction.rollback();
-            throw new RuntimeException(e);
+            throw new WebApplicationException(ex);
         }
 
         return optional;

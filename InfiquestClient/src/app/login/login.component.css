@@ -71,3 +71,10 @@
 .submitButton{
     margin-top: 25px;
 }
+
+.alertBlock{
+    width:25%;
+    margin:auto;
+    margin-bottom:50px; 
+    text-align: center;  
+}

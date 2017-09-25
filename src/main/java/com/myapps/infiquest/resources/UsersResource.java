@@ -79,6 +79,7 @@ public class UsersResource
         else
         {
             loggedInUser = Optional.empty();
+            throw new WebApplicationException("Incorrect username or password");
         }
 
         return loggedInUser;

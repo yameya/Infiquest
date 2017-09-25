@@ -102,8 +102,6 @@ public class InfiquestApplication extends Application<InfiquestConfiguration>
         JwtConsumer consumer = setupJWTConsumer(configuration);
         AuthDynamicFeature component = getAuthFilter(consumer,configuration.getAuthMode(),configuration.getAuthRealm());
         environment.jersey().register(component);
-        environment.jersey().register(new AuthValueFactoryProvider.Binder<>(Principal.class));
-        environment.jersey().register(RolesAllowedDynamicFeature.class);
 
     }
 
