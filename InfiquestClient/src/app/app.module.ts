@@ -18,6 +18,7 @@ import { LoginComponent } from './login/login.component';
 import { InfiquestHomeComponent } from './infiquest-home/infiquest-home.component';
 import { SearchComponent } from './search/search.component';
 import { AllQuestionsComponent } from './all-questions/all-questions.component';
+import { AuthGuard} from './authguard';
 
 export function loadConfig(config: AppConfig) : Function
 {
@@ -45,6 +46,7 @@ export function loadConfig(config: AppConfig) : Function
   ],
   providers: [
     InfiquestService,
+    AuthGuard,
     { provide: LocationStrategy, useClass: PathLocationStrategy},
     AppConfig,
      { provide:APP_INITIALIZER,useFactory: loadConfig, deps:[AppConfig], multi:true}

@@ -51,11 +51,12 @@ public class UserService
 
     private JwtClaims getClaimsForUser(String userId) {
         final JwtClaims claims = new JwtClaims();
-        claims.setExpirationTimeMinutesInTheFuture(5);
+        claims.setExpirationTimeMinutesInTheFuture(1);
         claims.setSubject(userId);
         //claims.setIssuer("Infiquest");
         //claims.setAudience("Users");
         return claims;
+
     }
 
     private String toToken(byte[] key, JwtClaims claims) {

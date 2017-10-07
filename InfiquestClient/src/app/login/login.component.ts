@@ -43,11 +43,8 @@ export class LoginComponent implements OnInit {
         }
         )
         .catch( errorObject => {
-          
-          console.log("errorObject" + errorObject);
           this.error = true;
           this.errorMessage = errorObject.json().message;
-          console.log(errorObject.json().message);
         });
       
   }

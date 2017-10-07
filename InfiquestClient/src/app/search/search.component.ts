@@ -24,7 +24,7 @@ export class SearchComponent implements OnInit {
     this.context = this.config.getConfig("searchContext");
    }
 
-  ngOnInit() {
+  ngOnInit(){
   }
 
 

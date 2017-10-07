@@ -6,7 +6,8 @@ import { User } from './users/user';
 import { Tag } from './tags/tag';
 import { AppConfig } from './app.config';
 import {Location, LocationStrategy} from '@angular/common';
-
+import { Router }            from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/toPromise';
 
 
@@ -19,9 +20,9 @@ export class InfiquestService {
   private SLASH : string = "/";
   private COLON : string =":";
   private currentUser : User;
-  private infiquestLocalStorage = window.localStorage;
+  public infiquestLocalStorage = window.localStorage;
 
-  constructor(private http: Http,private location:Location, private locationStrategy:LocationStrategy,private config: AppConfig) {
+  constructor(private http: Http,private location:Location, private locationStrategy:LocationStrategy,private config: AppConfig, private router : Router, private route: ActivatedRoute) {
   }
 
   createAuthorizationHeader(headers: Headers) {
@@ -49,7 +50,9 @@ export class InfiquestService {
                .toPromise()
                .then(
                  response => response.json() as Question[])
-               .catch(this.handleError);
+               .catch(error => {
+                return this.handleError(error);
+              });
   }
 
   getAllTags(): Promise<Tag[]> {
@@ -61,7 +64,9 @@ export class InfiquestService {
                .toPromise()
                .then(
                  response => response.json() as Tag[])
-               .catch(this.handleError);
+               .catch(error => {
+                return this.handleError(error);
+              });
   }
 
    getQuestionById(questionId : number): Promise<Question> {
@@ -74,7 +79,9 @@ export class InfiquestService {
                .toPromise()
                .then(
                  response => response.json() as Question)
-               .catch(this.handleError);
+               .catch(error => {
+                return this.handleError(error);
+              });
   }
 
    getAnsByQuestionId(questionId : number): Promise<Answer[]> {
@@ -87,7 +94,9 @@ export class InfiquestService {
                .toPromise()
                .then(
                  response => response.json() as Answer[])
-               .catch(this.handleError);
+               .catch(error => {
+                return this.handleError(error);
+              });
   }
 
   createNewAnswer(answer: Answer): Promise<Answer> {
@@ -98,7 +107,9 @@ export class InfiquestService {
         .post(url, JSON.stringify(answer), {headers: headers})
         .toPromise()
         .then(res => res.json() as Answer)
-        .catch(this.handleError);
+        .catch(error => {
+          return this.handleError(error);
+        });
   }
 
   createUpdateQuestion(question : Question) : Promise<Question>{
@@ -109,7 +120,9 @@ export class InfiquestService {
         .post(url, JSON.stringify(question), {headers: headers})
         .toPromise()
         .then(res => res.json() as Question)
-        .catch(this.handleError);  
+        .catch(error => {
+          return this.handleError(error);
+        });  
   }
 
   loginForUser(user: User): Promise<User> {
@@ -122,7 +135,9 @@ export class InfiquestService {
         .then(res => 
           res.json() as User
         )
-        .catch(this.handleError);
+        .catch(error => {
+          return this.handleError(error);
+        });
   }
 
   searchQuestionsForKey(searchText: String): Promise<Question[]> {
@@ -136,20 +151,34 @@ export class InfiquestService {
       .then(res => 
         res.json() as Question[]
       )
-      .catch(this.handleError);
+      .catch(error => {
+        return this.handleError(error);
+      });
 }
 
 
 setUser(user : User) : void
 {
-    this.currentUser = user;
-    this.infiquestLocalStorage.setItem("currentUser",JSON.stringify(user));
+  this.infiquestLocalStorage.setItem("currentUser",JSON.stringify(user));
+}
+
+private handleError(error: any): Promise<any> {
+  if(error.status == 401)
+  {
+    this.reDirectToLoginOnAuthFailure();
+  }  
+  console.error('An error occurred', JSON.stringify(error)); // for demo purposes only
+  return Promise.reject(error);
+}
+
+reDirectToLoginOnAuthFailure(): void {
+  this.infiquestLocalStorage.removeItem("currentUser");
+  this.router.navigateByUrl("/login");
 }
 
 
+
 /*
-
-
   delete(id: number): Promise<void> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.delete(url, {headers: this.headers})
@@ -159,11 +188,6 @@ setUser(user : User) : void
   }
 
 */
-
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error);
-  }
 
 }
 

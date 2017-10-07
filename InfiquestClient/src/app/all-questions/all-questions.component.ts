@@ -19,7 +19,7 @@ export class AllQuestionsComponent implements OnInit {
 
   ngOnInit() {
     this.InfiquestService.getAllQuestions()
-    .then(questions => this.questionsArray = questions);     
+      .then(questions => this.questionsArray = questions);  
   }
 
 }
