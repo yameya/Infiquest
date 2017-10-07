@@ -8,5 +8,8 @@
     "getAnswersByQuestionIdUrl" : "answers/getByQuestionId/",
     "createAnswerForQuestionIdUrl" : "answers/upsertanswer",
     "createOrUpdateQuestionUrl" : "questions/upsertquestion",
-    "loginUser" : "users/login"
+    "loginUser" : "users/login",
+    "searchQuestions" : "searchquestions/",
+    "allContext":"ALL_QUESTIONS",
+    "searchContext": "SEARCHED_QUESTIONS"
 }

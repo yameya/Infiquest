@@ -1,0 +1,41 @@
+
+.searchContainer{
+    padding-top:5%;
+    padding-left:15%;
+}
+
+.serachTitle{
+    padding-bottom:20px;
+}
+
+.searchLabel{
+    color: black;
+    margin:2px;
+    font-size: 250%;
+    font-family:serif;
+    font-style: bold;
+   
+}
+
+.searchKey
+{
+    font-size:15px;
+    width:350px;
+    height:40px;
+    border:2px solid navy;
+}
+
+.searchIcon
+{
+    color:navy;
+}
+
+.searchResultsContainer
+{
+    padding-top:25px;
+}
+
+.errorBlock{
+    padding-top:10px;
+    padding-left: 15%;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input} from '@angular/core';
 import {Question} from './question';
 import {InfiquestService} from '../infiquest.service';
 import { Router }            from '@angular/router';
@@ -13,15 +13,21 @@ export class QuestionsComponent implements OnInit {
 
   questions : Question[];
   selectedQuestion: Question;
- 
+  
   constructor(private InfiquestService: InfiquestService, private router : Router, private route: ActivatedRoute) { }
 
   ngOnInit() : void {
-     this.InfiquestService.getAllQuestions()
-      .then(questions => this.questions = questions);
-      
+   
   }
-  
+
+  @Input()
+  set questionsArray(questionsArray:Question[]){
+    this.questions = questionsArray;
+  }
+
+  get questionsArray():Question[] {
+    return this.questions;
+  }
   onSelect(question :Question) : void
   {
     this.selectedQuestion = question;  
@@ -30,7 +36,7 @@ export class QuestionsComponent implements OnInit {
 
   goToDetailsPage() : void
   {
-    this.router.navigate(['../questionDetail/'+ this.selectedQuestion.question_id],{ relativeTo: this.route });
+    this.router.navigateByUrl('home/questionDetail/'+ this.selectedQuestion.question_id);
   }
 
 }

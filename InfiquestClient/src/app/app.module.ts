@@ -16,6 +16,8 @@ import { InfiquestService} from './infiquest.service';
 import { QuestionDetailComponent } from './questionDetails/question-detail.component';
 import { LoginComponent } from './login/login.component';
 import { InfiquestHomeComponent } from './infiquest-home/infiquest-home.component';
+import { SearchComponent } from './search/search.component';
+import { AllQuestionsComponent } from './all-questions/all-questions.component';
 
 export function loadConfig(config: AppConfig) : Function
 {
@@ -29,7 +31,9 @@ export function loadConfig(config: AppConfig) : Function
     TagsComponent,
     QuestionDetailComponent,
     LoginComponent,
-    InfiquestHomeComponent
+    InfiquestHomeComponent,
+    SearchComponent,
+    AllQuestionsComponent
 
   ],
   imports: [

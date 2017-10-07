@@ -19,12 +19,14 @@ export class InfiquestService {
   private SLASH : string = "/";
   private COLON : string =":";
   private currentUser : User;
+  private infiquestLocalStorage = window.localStorage;
 
   constructor(private http: Http,private location:Location, private locationStrategy:LocationStrategy,private config: AppConfig) {
   }
 
   createAuthorizationHeader(headers: Headers) {
-    headers.append('Authorization', 'Bearer ' + this.currentUser.userPassword); 
+    let user : User  = JSON.parse(this.infiquestLocalStorage.getItem("currentUser"));
+    headers.append('Authorization', 'Bearer ' + user.userPassword); 
     headers.append('Content-Type','application/json');
   }
 
@@ -123,6 +125,27 @@ export class InfiquestService {
         .catch(this.handleError);
   }
 
+  searchQuestionsForKey(searchText: String): Promise<Question[]> {
+    let url : string = this.prepareUrl("searchQuestions");
+    url += searchText;
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http
+      .get(url, {headers: headers})
+      .toPromise()
+      .then(res => 
+        res.json() as Question[]
+      )
+      .catch(this.handleError);
+}
+
+
+setUser(user : User) : void
+{
+    this.currentUser = user;
+    this.infiquestLocalStorage.setItem("currentUser",JSON.stringify(user));
+}
+
 
 /*
 
@@ -140,11 +163,6 @@ export class InfiquestService {
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error);
-  }
-
-  setUser(user : User) : void
-  {
-      this.currentUser = user;
   }
 
 }

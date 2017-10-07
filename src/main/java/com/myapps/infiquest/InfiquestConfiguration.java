@@ -38,7 +38,7 @@ public class InfiquestConfiguration extends Configuration {
 
     @NotEmpty
     @JsonProperty
-    private String elasticSearchPort = "9300";
+    private String elasticSearchPort = "9200";
 
     @NotEmpty
     @JsonProperty

@@ -1,0 +1,20 @@
+<div class="searchContainer">
+    <div class="serachTitle" >  
+        <span class="searchLabel">Search Questions</span>
+    </div>
+
+    <form>
+        <input type="text" class="searchKey" placeholder="Search..." required [(ngModel)]="searchText" name="searchText">
+        <i class="fa fa-lg fa-search searchIcon" aria-hidden="true" (click)="searchQuestionsForKey(searchText)" (keyup.enter)="searchQuestionsForKey(searchText)"></i>            
+    </form>
+
+</div>
+
+<div class="searchResultsContainer"  *ngIf="hasSearchFinished">
+  <app-questions [questionsArray] = "searchedQuestions"></app-questions>
+</div>  
+      
+<div class=" errorBlock "  *ngIf="hasSearchFinished && !recordsFound">
+  <span class= "alert alert-danger">{{ errorMessage }}</span> 
+</div>  
+        
