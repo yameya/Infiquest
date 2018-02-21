@@ -1,5 +1,6 @@
 package com.myapps.infiquest.core;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
@@ -32,15 +33,19 @@ public class Tags implements Principal
     @Id
     @Column(name="TAG_ID")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @JsonProperty("tag_id")
     private Long tagId;
 
     @Column(name="TAG_NAME")
+    @JsonProperty("tag_name")
     private String tagName;
 
     @Column(name="TAG_IMAGE")
+    @JsonProperty("tag_image")
     private String tagImage;
 
     @Column(name = "TAG_TIMESTAMP")
+    @JsonProperty("tag_timestamp")
     private Long tagCreationTime;
 
     public Long getTagId() {

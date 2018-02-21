@@ -16,7 +16,7 @@ export class SearchComponent implements OnInit {
   private context : String;
   private recordsFound : boolean = false;
   private noRecordsFoundMessage : string = "No questions found containing the entered key!";
-  private serverErrorMessage : string = "Something went wrong in the server. Please try after some time.";
+  private serverErrorMessage : string = "There was an error processing your request.Please try after some time.";
   private errorMessage : string;
 
 
@@ -46,6 +46,7 @@ export class SearchComponent implements OnInit {
           
         })
         .catch( errorObject => {
+            this.hasSearchFinished = true;
             this.recordsFound = false;
             this.errorMessage = this.serverErrorMessage;
         });

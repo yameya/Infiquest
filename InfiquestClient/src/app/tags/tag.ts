@@ -1,6 +1,8 @@
 export class Tag {
  
- tagName:string;
+ tag_name:string;
+ tag_id: number;
+ tag_timestamp : number;
 
 }
 

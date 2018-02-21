@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { InfiquestHomeComponent } from './infiquest-home/infiquest-home.component';
 import { SearchComponent }        from './search/search.component';
 import { AllQuestionsComponent }        from './all-questions/all-questions.component';
+import { AskquestionComponent }        from './askquestion/askquestion.component';
 import { AuthGuard} from './authguard';
 
 
@@ -40,6 +41,11 @@ const routes: Routes = [
           {
             path: 'questionDetail/:questionId',
             component: QuestionDetailComponent,
+            canActivate: [AuthGuard] 
+          },
+          {
+            path: 'askquestion',
+            component: AskquestionComponent,
             canActivate: [AuthGuard] 
           }
     ]

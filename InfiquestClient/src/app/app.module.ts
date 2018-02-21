@@ -19,6 +19,7 @@ import { InfiquestHomeComponent } from './infiquest-home/infiquest-home.componen
 import { SearchComponent } from './search/search.component';
 import { AllQuestionsComponent } from './all-questions/all-questions.component';
 import { AuthGuard} from './authguard';
+import { AskquestionComponent } from './askquestion/askquestion.component';
 
 export function loadConfig(config: AppConfig) : Function
 {
@@ -34,7 +35,8 @@ export function loadConfig(config: AppConfig) : Function
     LoginComponent,
     InfiquestHomeComponent,
     SearchComponent,
-    AllQuestionsComponent
+    AllQuestionsComponent,
+    AskquestionComponent
 
   ],
   imports: [
