@@ -4,6 +4,7 @@ import com.myapps.infiquest.core.Answer;
 import com.myapps.infiquest.core.Question;
 import com.myapps.infiquest.dao.AnswerDAO;
 import com.myapps.infiquest.dao.QuestionDAO;
+import com.myapps.infiquest.managed.ESClient;
 import io.dropwizard.hibernate.UnitOfWork;
 
 import javax.annotation.security.PermitAll;
@@ -21,10 +22,13 @@ import java.util.Optional;
 @Consumes(MediaType.APPLICATION_JSON)
 public class QuestionResource
 {
+    private ESClient esClient;
+
     private QuestionDAO questionDAO;
 
-    public QuestionResource(QuestionDAO questionDAO)
+    public QuestionResource(ESClient esClient,QuestionDAO questionDAO)
     {
+        this.esClient = esClient;
         this.questionDAO = questionDAO;
     }
 
@@ -58,10 +62,16 @@ public class QuestionResource
     @Path("upsertquestion")
     @UnitOfWork
     @PermitAll
-    public Optional<Question> createQuestion(Question answer)
+    public Optional<Question> createQuestion(Question question)
     {
 
-        return questionDAO.upsert(answer);
+        Optional<Question> optional = questionDAO.upsert(question);
+        if(optional.isPresent())
+        {
+            esClient.createQuestionDoc(question);
+        }
+
+        return optional;
     }
 
     @DELETE

@@ -12,6 +12,7 @@ export class AllQuestionsComponent implements OnInit {
 
   context : String; 
   questionsArray : Question[];
+  errorMessage: String;
 
   constructor(private InfiquestService : InfiquestService, private config: AppConfig) {
     this.context = this.config.getConfig("allContext");
@@ -19,7 +20,10 @@ export class AllQuestionsComponent implements OnInit {
 
   ngOnInit() {
     this.InfiquestService.getAllQuestions()
-      .then(questions => this.questionsArray = questions);  
+      .then(questions => this.questionsArray = questions)
+      .catch( errorObject => {
+         this.errorMessage = this.config.getConfig("server_error");
+    });  
   }
 
 }

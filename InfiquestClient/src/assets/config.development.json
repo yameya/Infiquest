@@ -11,5 +11,8 @@
     "loginUser" : "users/login",
     "searchQuestions" : "searchquestions/",
     "allContext":"ALL_QUESTIONS",
-    "searchContext": "SEARCHED_QUESTIONS"
+    "searchContext": "SEARCHED_QUESTIONS",
+    "search_noRecordsFoundMessage":"No questions found containing the entered key:",
+    "server_error":"There was an error processing your request.Please try after some time",
+    "login_error": "You have been logged out!"
 }

@@ -165,17 +165,18 @@ setUser(user : User) : void
 private handleError(error: any): Promise<any> {
   if(error.status == 401)
   {
-    this.reDirectToLoginOnAuthFailure();
+    this.reDirectToLoginOnAuthFailure(this.config.getConfig("login_error"));
   }  
   console.error('An error occurred', JSON.stringify(error)); // for demo purposes only
   return Promise.reject(error);
 }
 
-reDirectToLoginOnAuthFailure(): void {
-  this.infiquestLocalStorage.removeItem("currentUser");
-  this.router.navigateByUrl("/login");
-}
 
+reDirectToLoginOnAuthFailure(message : String): void {
+  this.infiquestLocalStorage.removeItem("currentUser");
+  //this.router.navigateByUrl("/login");
+  this.router.navigate(["/login"],{ queryParams: { message: message }});
+}
 
 
 /*

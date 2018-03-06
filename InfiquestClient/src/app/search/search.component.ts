@@ -15,8 +15,6 @@ export class SearchComponent implements OnInit {
   private searchedQuestions : Question[];
   private context : String;
   private recordsFound : boolean = false;
-  private noRecordsFoundMessage : string = "No questions found containing the entered key!";
-  private serverErrorMessage : string = "There was an error processing your request.Please try after some time.";
   private errorMessage : string;
 
 
@@ -40,7 +38,7 @@ export class SearchComponent implements OnInit {
           }
           else
           {
-            this.errorMessage = this.noRecordsFoundMessage;
+            this.errorMessage = this.config.getConfig("search_noRecordsFoundMessage");
             this.recordsFound = false;
           }
           
@@ -48,7 +46,7 @@ export class SearchComponent implements OnInit {
         .catch( errorObject => {
             this.hasSearchFinished = true;
             this.recordsFound = false;
-            this.errorMessage = this.serverErrorMessage;
+            this.errorMessage = this.config.getConfig("server_error");
         });
       
   }

@@ -9,15 +9,12 @@ import com.myapps.infiquest.managed.ESClientManager;
 import com.myapps.infiquest.resources.*;
 import io.dropwizard.Application;
 import io.dropwizard.auth.AuthDynamicFeature;
-import io.dropwizard.auth.AuthValueFactoryProvider;
-import io.dropwizard.auth.basic.BasicCredentialAuthFilter;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.hibernate.UnitOfWorkAwareProxyFactory;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
-import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.jose4j.jwt.consumer.JwtConsumer;
 import org.jose4j.jwt.consumer.JwtConsumerBuilder;
 import org.jose4j.keys.HmacKey;
@@ -36,6 +33,7 @@ public class InfiquestApplication extends Application<InfiquestConfiguration>
 {
 
     private UsersDAO usersDAO;
+    private ESClient esClient;
     public static void main(final String[] args) throws Exception
     {
         new InfiquestApplication().run(args);
@@ -77,14 +75,13 @@ public class InfiquestApplication extends Application<InfiquestConfiguration>
         environment.jersey().register(new UserGroupResource(usergroupDAO));
         environment.jersey().register(new TagsResource(tagsDAO));
         environment.jersey().register(new AnswerResource(answerDAO));
-        environment.jersey().register(new QuestionResource(questionDAO));
+        environment.jersey().register(new QuestionResource(esClient,questionDAO));
 
     }
 
 
     private void registerElasticSearchResource(final InfiquestConfiguration configuration,final Environment environment)
     {
-        ESClient esClient = ESClient.getEsClientInstance(configuration.getElasticSearchHost(),configuration.getElasticSearchPort(),configuration.getElasticSearchClusterName(),configuration.getElasticSearchNodeName());
         ESClientManager esClientManager = new ESClientManager(esClient);
         environment.lifecycle().manage(esClientManager);
 
@@ -94,6 +91,7 @@ public class InfiquestApplication extends Application<InfiquestConfiguration>
     @Override
     public void run(final InfiquestConfiguration configuration, final Environment environment)
     {
+        setupElasticClient(configuration);
         setupResources(environment);
         registerElasticSearchResource(configuration,environment);
         enableCorsHeaders(environment);
@@ -103,6 +101,11 @@ public class InfiquestApplication extends Application<InfiquestConfiguration>
         AuthDynamicFeature component = getAuthFilter(consumer,configuration.getAuthMode(),configuration.getAuthRealm());
         environment.jersey().register(component);
 
+    }
+
+    private void setupElasticClient(InfiquestConfiguration configuration)
+    {
+        esClient = ESClient.getEsClientInstance(configuration.getElasticSearchHost(),configuration.getElasticSearchPort(),configuration.getElasticSearchClusterName(),configuration.getElasticSearchNodeName());
     }
 
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {InfiquestService} from '../infiquest.service';
+import { AppConfig } from '../app.config';
 
 @Component({
   selector: 'app-infiquest-home',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfiquestHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private InfiquestService: InfiquestService, private config: AppConfig) { }
 
   ngOnInit() {
   }
 
+  logout() : void{
+
+    this.InfiquestService.reDirectToLoginOnAuthFailure(this.config.getConfig("login_error"));
+  }
 }

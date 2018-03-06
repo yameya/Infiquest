@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from '../users/user';
 import { ActivatedRoute } from '@angular/router';
 import {InfiquestService} from '../infiquest.service';
-import { Router }            from '@angular/router';
+import { Router, Params }            from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -21,9 +21,25 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
-    this.error = false;
+   
+    // subscribe to router event
+    this.route.queryParams.subscribe((params: Params) => {
+      
+      let message = params['message'];
+    
+      if(typeof message !== 'undefined')
+      {
+        this.errorMessage = message;
+        this.error = true;
+      }
+      else
+      {
+        this.error = false;
+      }
+      
+    });
   }
-
+  
   setUserAttributes(user : User) : void{
 
     this.user.setUserName(user.userName);
