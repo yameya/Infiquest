@@ -1,0 +1,38 @@
+
+<div class="container questionContainer" *ngIf="!postQuestionAttempted">
+  <form (ngSubmit)="onSubmit()" #questionForm="ngForm">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Enter title of the question" required autofocus [(ngModel)]="newQuestion.question_title" name="questionTitle" id="questionTitle">
+    </div>
+ 
+    <div class="form-group">
+      <textarea class="form-control" name="questionDescription" cols="100%" rows="8" required   [(ngModel)]="newQuestion.question_description"></textarea>
+    </div> 
+
+    <div class="form-group">
+      <label for="tags">Tags</label>
+      <select class="form-control" id="tags" required [(ngModel)]="selectedTag" name="selectedTag">
+        <option *ngFor="let tag of tags" [ngValue] = "tag">{{tag.tag_name}}</option>
+      </select>
+    </div>   
+
+    <div class="form-group">
+       <input type="submit" name="Post Question" (click)="submitQuestion()" class="btn btn-success" [disabled]="!questionForm.form.valid"/>   
+    </div>   
+   
+   </form> 
+</div>
+ 
+<div class="successBlock"  *ngIf="postQuestionAttempted && !errorOccurred">
+  <div class="alert alert-success">
+      <span >{{ successMessage }}</span>     
+      <a  (click)="onSelect()">
+          Navigate to Recent Questions
+      </a>
+  </div>  
+  
+</div>  
+
+<div class="errorBlock"  *ngIf="postQuestionAttempted && errorOccurred">
+  <span class= "alert alert-danger">{{ errorMessage }}</span> 
+</div>  

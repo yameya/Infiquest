@@ -1,0 +1,26 @@
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+  }
+  
+  .ng-invalid:not(form)  {
+    border-left: 5px solid #a94442; /* red */
+  }
+
+  .questionContainer{
+    padding-top:150px;
+  }
+
+  .questionTitle{
+    padding:15px;
+  }
+
+  .errorBlock{
+    padding-top:200px;
+    padding-left: 15%;
+}
+
+.successBlock{
+  padding-top:200px;
+  padding-left: 15%;
+  max-width: 50%;
+}
