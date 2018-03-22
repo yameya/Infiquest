@@ -10,12 +10,12 @@ import { AppConfig } from '../app.config';
 })
 export class SearchComponent implements OnInit {
 
-  private hasSearchFinished : boolean = false;
-  private searchText : string;
-  private searchedQuestions : Question[];
-  private context : String;
-  private recordsFound : boolean = false;
-  private errorMessage : string;
+  hasSearchFinished : boolean = false;
+  searchText : string;
+  searchedQuestions : Question[];
+  context : String;
+  recordsFound : boolean = false;
+  errorMessage : string;
 
 
   constructor(private InfiquestService: InfiquestService, private config: AppConfig) {

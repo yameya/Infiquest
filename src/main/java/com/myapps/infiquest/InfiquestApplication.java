@@ -8,6 +8,7 @@ import com.myapps.infiquest.managed.ESClient;
 import com.myapps.infiquest.managed.ESClientManager;
 import com.myapps.infiquest.resources.*;
 import io.dropwizard.Application;
+import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.auth.AuthDynamicFeature;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
@@ -23,7 +24,6 @@ import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
 import javax.ws.rs.WebApplicationException;
 import java.io.UnsupportedEncodingException;
-import java.security.Principal;
 import java.util.EnumSet;
 
 import static org.eclipse.jetty.servlets.CrossOriginFilter.*;
@@ -49,6 +49,7 @@ public class InfiquestApplication extends Application<InfiquestConfiguration>
     public void initialize(final Bootstrap<InfiquestConfiguration> bootstrap)
     {
         bootstrap.addBundle(hibernateBundle);
+        bootstrap.addBundle(new AssetsBundle("/assets/dist", "/", "index.html"));
 
     }
 
@@ -100,6 +101,7 @@ public class InfiquestApplication extends Application<InfiquestConfiguration>
         JwtConsumer consumer = setupJWTConsumer(configuration);
         AuthDynamicFeature component = getAuthFilter(consumer,configuration.getAuthMode(),configuration.getAuthRealm());
         environment.jersey().register(component);
+        environment.jersey().setUrlPattern("/api/*");
 
     }
 
