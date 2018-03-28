@@ -12,10 +12,10 @@ database:
   user: postgres
 
   # the password
-  password: Chilloff_30
+  password: mysecretpassword
 
   # the JDBC URL
-  url: jdbc:postgresql:Infiquest
+  url: jdbc:postgresql://db:5432/Infiquest?currentSchema=infiquest
 
   # any properties specific to your JDBC driver:
   properties:

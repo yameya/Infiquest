@@ -20,6 +20,7 @@ import { SearchComponent } from './search/search.component';
 import { AllQuestionsComponent } from './all-questions/all-questions.component';
 import { AuthGuard} from './authguard';
 import { AskquestionComponent } from './askquestion/askquestion.component';
+import { SignupComponent } from './signup/signup.component';
 
 export function loadConfig(config: AppConfig) : Function
 {
@@ -36,7 +37,8 @@ export function loadConfig(config: AppConfig) : Function
     InfiquestHomeComponent,
     SearchComponent,
     AllQuestionsComponent,
-    AskquestionComponent
+    AskquestionComponent,
+    SignupComponent
 
   ],
   imports: [

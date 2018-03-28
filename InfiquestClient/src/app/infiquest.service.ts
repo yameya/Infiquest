@@ -37,7 +37,10 @@ export class InfiquestService {
   }
 
   prepareUrl(api :string):string {
-    let url = this.config.getConfig('protocol') + this.COLON + this.SLASH + this.SLASH + this.config.getConfig('host') + this.COLON + this.config.getConfig('port') + this.SLASH + this.config.getConfig(api);
+    //let url = this.config.getConfig('protocol') + this.COLON + this.SLASH + this.SLASH + this.config.getConfig('host') + this.COLON + this.config.getConfig('port') + this.SLASH + this.config.getConfig(api);
+    let host = window.location.host;
+    let url = this.config.getConfig('protocol') + this.COLON + this.SLASH + this.SLASH + host + this.SLASH + this.config.getConfig(api);
+    
     return url;
   }
 
@@ -124,6 +127,19 @@ export class InfiquestService {
           return this.handleError(error);
         });  
   }
+
+  createUpdateUser(user : User) : Promise<User>{
+    let url : string = this.prepareUrl("createOrUpdateUserUrl");
+    let headers = new Headers();
+    this.setHeaderWithNoAuth(headers);
+    return this.http
+      .post(url, JSON.stringify(user), {headers: headers})
+      .toPromise()
+      .then(res => res.json() as User)
+      .catch(error => {
+        return this.handleError(error);
+      });  
+}
 
   loginForUser(user: User): Promise<User> {
       let url : string = this.prepareUrl("loginUser");

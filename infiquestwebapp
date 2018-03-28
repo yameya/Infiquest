@@ -1,0 +1,12 @@
+FROM openjdk:8-jdk
+
+COPY ./config.yml /data/infiquest/config.yml
+COPY ./infiquest-1.0.jar /data/infiquest/infiquest-1.0.jar
+
+WORKDIR /data/infiquest
+
+RUN java -version
+
+CMD ["java","-jar","infiquest-1.0.jar","server","config.yml"]
+
+EXPOSE 9117

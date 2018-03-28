@@ -36,8 +36,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
-
-SET search_path = infiquest, pg_catalog;
+SET search_path TO infiquest,pg_catalog;
 
 SET default_tablespace = '';
 
@@ -655,3 +654,4 @@ ALTER TABLE ONLY questionusergroup
 -- PostgreSQL database dump complete
 --
 
+alter role postgres set search_path = infiquest ;

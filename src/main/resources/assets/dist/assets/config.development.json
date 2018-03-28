@@ -8,11 +8,13 @@
     "getAnswersByQuestionIdUrl" : "api/answers/getByQuestionId/",
     "createAnswerForQuestionIdUrl" : "api/answers/upsertanswer",
     "createOrUpdateQuestionUrl" : "api/questions/upsertquestion",
+    "createOrUpdateUserUrl" : "api/users/upsertuser",
     "loginUser" : "api/users/login",
     "searchQuestions" : "api/searchquestions/",
     "allContext":"ALL_QUESTIONS",
     "searchContext": "SEARCHED_QUESTIONS",
     "search_noRecordsFoundMessage":"No questions found containing the entered key:",
     "server_error":"There was an error processing your request.Please try after some time",
-    "login_error": "You have been logged out!"
+    "login_error": "You have been logged out!",
+    "pwd_nomatch_error" : "Passwords do not match"
 }

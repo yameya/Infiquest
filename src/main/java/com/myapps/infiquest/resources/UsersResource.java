@@ -46,7 +46,6 @@ public class UsersResource
     @POST
     @Path("upsertuser")
     @UnitOfWork
-    @PermitAll
     public Optional<Users> createUser(Users user)
     {
         return usersDAO.upsert(user);

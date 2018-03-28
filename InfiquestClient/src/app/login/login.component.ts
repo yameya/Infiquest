@@ -3,6 +3,7 @@ import {User} from '../users/user';
 import { ActivatedRoute } from '@angular/router';
 import {InfiquestService} from '../infiquest.service';
 import { Router, Params }            from '@angular/router';
+import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   error: boolean;
   errorMessage : string;
 
-  constructor(private router : Router, private route: ActivatedRoute,private InfiquestService: InfiquestService) {
+  constructor(private router : Router, private route: ActivatedRoute,private InfiquestService: InfiquestService,private location: Location) {
     this.user = new User();
   }
 
@@ -50,6 +51,8 @@ export class LoginComponent implements OnInit {
   }
 
   login(user : User) : void{
+    console.log("Log 1" + this.location.path());
+    console.log("Log 2" + window.location.host);
     this.setUserAttributes(user);
     this.InfiquestService.loginForUser(this.user)
         .then(user => {
@@ -63,5 +66,9 @@ export class LoginComponent implements OnInit {
           this.errorMessage = errorObject.json().message;
         });
       
+  }
+
+  navigateToSignUpPage() : void{
+      this.router.navigate(['/signup']);
   }
 }

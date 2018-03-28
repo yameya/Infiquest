@@ -9,11 +9,13 @@ import { SearchComponent }        from './search/search.component';
 import { AllQuestionsComponent }        from './all-questions/all-questions.component';
 import { AskquestionComponent }        from './askquestion/askquestion.component';
 import { AuthGuard} from './authguard';
+import { SignupComponent } from './signup/signup.component';
 
 
 const routes: Routes = [
   { path: 'login' , component: LoginComponent},
   { path: 'logout' , component: LoginComponent},
+  { path: 'signup' , component: SignupComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
     path: 'home',
