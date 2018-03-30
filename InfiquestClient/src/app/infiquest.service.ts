@@ -141,6 +141,19 @@ export class InfiquestService {
       });  
 }
 
+createUpdateTag(tag : Tag) : Promise<Tag>{
+  let url : string = this.prepareUrl("createOrUpdateTagUrl");
+  let headers = new Headers();
+  this.createAuthorizationHeader(headers);
+  return this.http
+    .post(url, JSON.stringify(tag), {headers: headers})
+    .toPromise()
+    .then(res => res.json() as Tag)
+    .catch(error => {
+      return this.handleError(error);
+    });  
+}
+
   loginForUser(user: User): Promise<User> {
       let url : string = this.prepareUrl("loginUser");
       let headers = new Headers();

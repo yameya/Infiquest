@@ -51,8 +51,6 @@ export class LoginComponent implements OnInit {
   }
 
   login(user : User) : void{
-    console.log("Log 1" + this.location.path());
-    console.log("Log 2" + window.location.host);
     this.setUserAttributes(user);
     this.InfiquestService.loginForUser(this.user)
         .then(user => {

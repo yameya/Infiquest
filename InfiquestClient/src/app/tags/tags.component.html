@@ -2,7 +2,7 @@
   <h4> <strong>Tags </strong></h4>
 </div>  
 
-<div class="tagsContainer">
+<div *ngIf="recordsfound" class="tagsContainer">
    <div class="container">
       <div class="row">
         <div class="col-md-3 thumbnail" *ngFor="let tag of tags">   
@@ -14,5 +14,31 @@
    </div>  
       
        
+</div>
+
+<div *ngIf="isError || !recordsfound" class=" alertBlock">
+    <h4 class= "alert alert-danger">{{ errorMessage }}</h4> 
+</div>
+
+<div class="createTagButton">  
+    <button class="btn btn-md btn-primary signupbtn-block submitButton" type="submit" (click)="toggleButton()" >Create Tag</button>
+    <div *ngIf="toggleCreateButton">
+      <div class="panel panel-default">  
+          <div>
+             
+              <form class="panel-body" #tagform="ngForm">
+                  <div class="form-group row">
+                      <input  type="text" class="col-sm-4 form-control form-control-tag" placeholder="Name" required autofocus [(ngModel)]="tagName" name="tagName">
+                      <div class="col-sm-5">
+                          <button class="btn btn-md btn-block btn-primary submitButton" type="submit" [disabled]="!tagform.form.valid" (click)="createTag()" >Done</button>
+                      </div>
+                  </div>
+              </form>
+          
+          </div>
+      </div>
+   
+  
+  </div>    
 </div>
 

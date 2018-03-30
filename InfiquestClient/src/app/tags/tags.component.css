@@ -7,7 +7,7 @@
 
 .tagsTitle
 {
-     padding:10px;
+   padding:10px;
    margin-left:15%;
    color:black;
 }
@@ -25,3 +25,61 @@
    
     
 }
+
+.createTagButton{
+    margin: 0 auto;
+    max-width: 70%;
+    text-align: left;
+    padding-top: 50px;
+    
+
+}
+
+.alertBlock{
+    padding-top:50px;
+    padding-left: 15%;
+    max-width: 30%;
+    text-align: center;
+}
+
+.form-control {
+    display: block;
+    width: 50%;
+    height: 34px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+         -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  }
+
+
+  .panel {
+    max-width: 40%;
+    background-color: 	#F5F5F5;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  }
+  .panel-body {
+    padding: 15px;
+  }
+
+  .panel-default {
+    color: #fff;
+    border-color: #0000CD;
+  }
+
+  .form-control-tag{
+    align-content: center;
+    text-align: center;
+    border-color: #0000CD;
+  }

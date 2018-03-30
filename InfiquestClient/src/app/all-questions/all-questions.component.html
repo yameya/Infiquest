@@ -1,4 +1,12 @@
 <div class="questionTitle">
   <h4> <strong>Recent Questions </strong></h4>
+</div> 
+
+<div *ngIf="recordsFound">
+    <app-questions [questionsArray] = "questionsArray" ></app-questions>
 </div>  
-<app-questions [questionsArray] = "questionsArray" ></app-questions>
+        
+<div class="errorBlock"  *ngIf="!recordsFound || isError">
+    <h4 class= "alert alert-danger">{{ errorMessage }}</h4> 
+</div>  
+
