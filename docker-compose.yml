@@ -1,5 +1,4 @@
 --- 
-version: "3"
 services: 
   db: 
     build: 
@@ -7,14 +6,37 @@ services:
       dockerfile: infiquestdb
     ports: 
       - "5432:5432"
+  elasticsearch: 
+    cap_add: 
+      - IPC_LOCK
+    container_name: elasticsearch
+    environment: 
+      - cluster.name=infcluster
+      - node.name=infnode
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - network.host=0.0.0.0
+      - xpack.security.enabled=false
+    
+    image: "docker.elastic.co/elasticsearch/elasticsearch:5.1.1"
+    
+    ports: 
+      - "9200:9200"
+      - "9300:9300"
+    ulimits: 
+      memlock: 
+        hard: -1
+        soft: -1
   web: 
     build: 
       context: ./
       dockerfile: infiquestwebapp
     depends_on: 
       - db
-    links:
-      - db        
+      - elasticsearch
+    links: 
+      - db
+      - elasticsearch
     ports: 
       - "9117:9117"
-
+version: "3"

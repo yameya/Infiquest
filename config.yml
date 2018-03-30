@@ -45,7 +45,7 @@ server:
       - type: http
         port: 9180
 
-elasticSearchHost: 127.0.0.1
-elasticSearchClusterName: infiquestcluster
-elasticSearchNodeName: infiquestnode
+elasticSearchHost: elasticsearch
+elasticSearchClusterName: infcluster
+elasticSearchNodeName: infnode
 elasticSearchPort: 9300

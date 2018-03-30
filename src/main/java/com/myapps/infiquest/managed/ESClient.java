@@ -70,16 +70,15 @@ public class ESClient
         {
             try
             {
-                Settings settings = Settings.builder().put("cluster.name", clusterName)
-                        .put("node.name",nodeName).build();
+                Settings settings = Settings.builder().put("cluster.name", clusterName.trim())
+                        .build();
                 client = new PreBuiltTransportClient(settings)
-                        .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(hostName), Integer.parseInt(port)));
+                        .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(hostName.trim()), Integer.parseInt(port.trim())));
 
             }
-            catch (UnknownHostException e)
+            catch (Exception e)
             {
-                //TODO - Make this throw exception
-                e.printStackTrace();
+                throw new WebApplicationException(e);
             }
         }
     }
