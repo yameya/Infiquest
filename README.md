@@ -3,6 +3,8 @@ This is a Stackoverflow kinda app for internal use by any organization.
 At times, we come across questions that are company-specific or domain-specific and cannot be asked in general forums like Stackoverflow.
 This application was developed to handle this use case. 
 
+![Alt test](Screenshot.PNG?raw=true)
+
 Technology stack:
 
 Dropwizard, Postgres Database, Angular, Elasticsearch and Docker.
