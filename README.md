@@ -5,14 +5,14 @@ This application was developed to handle this use case.
 
 ![Alt test](Screenshot.PNG?raw=true)
 
-Technology stack:
+## Technology stack:
 
 Dropwizard, Postgres Database, Angular, Elasticsearch and Docker.
 
-Installation:
+## Installation:
 To install this application, navigate to the root folder of this project where docker-compose.yml file resides.
 Then run the below command:
 docker-compose up --build
 
-Usage:
+## Usage:
 On the browser, navigate to http://<DOCKER_CONTAINER_IP>:9117/
